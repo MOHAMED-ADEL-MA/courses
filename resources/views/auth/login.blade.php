@@ -76,17 +76,26 @@
                 <p class="text-center">
                 <h3 style="text-align: center">تسجيل الدخول</h3>
                 </p>
+                @if ($errors->any())
+                <div style="color: red">{{ $errors->first() }}</div>
+                @endif
                 <form method="POST" action="{{ route('login') }}">
                   @csrf
                   <div class="mb-3">
                     <label for="email" class="form-label">اسم المستخدم </label>
-                    <input type="email" class="form-control" id="email" name="email" :value="old('email')" required
-                      autofocus autocomplete="username" />
+                    <input type="email" class="form-control" id="email" name="email" :value="{{ old('email') }}"
+                      required autofocus autocomplete="username" />
+                    @error('email')
+                    <small style="color: red">{{ $message }}</small>
+                    @enderror
                   </div>
                   <div class="mb-4">
                     <label for="password" class="form-label">كلمه المرور</label>
                     <input type="password" class="form-control" name="password" id="password" required
                       autocomplete="current-password">
+                    @error('password')
+                    <small style="color: red">{{ $message }}</small>
+                    @enderror
                   </div>
                   <div class="d-flex align-items-center justify-content-between mb-4">
                     <div class="form-check">
@@ -100,8 +109,8 @@
                     <a class="text-primary fw-bold" href="{{ route('password.request') }}">نسيت كلمة المرورر؟</a>
                     @endif
                   </div>
-                  <button type="submit" class="btn btn-primary w-100 py-8 fs-4 mb-4 rounded-2">{{ __('تسجيل الدخول')
-                    }}</button>
+                  <button type="submit" class="btn btn-primary w-100 py-8 fs-4 mb-4 rounded-2">تسجيل الدخول
+                  </button>
                 </form>
 
               </div>
