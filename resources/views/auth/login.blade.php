@@ -100,8 +100,7 @@
                   <div class="d-flex align-items-center justify-content-between mb-4">
                     <div class="form-check">
                       <label class="form-check-label text-dark" for="flexCheckChecked">
-                        <input class="form-check-input primary" type="checkbox" name="remember" value=""
-                          id="flexCheckChecked" checked>
+                        <input class="form-check-input primary" type="checkbox" name="remember" id="flexCheckChecked">
                         <span class="ms-2 text-sm text-gray-600">تذكرني</span>
                       </label>
                     </div>

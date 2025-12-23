@@ -187,10 +187,13 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="./forms/general.html" class="nav-link">
-                                <i class="nav-icon bi bi-circle"></i>
-                                <p>General Elements</p>
+
+
+                            <a href="{{ route('add.user') }}" class="nav-link">
+                                <i class="nav-icon bi bi-plus"></i>
+                                <p>اضافه مستخدم</p>
                             </a>
+
                         </li>
                     </ul>
                 </li>

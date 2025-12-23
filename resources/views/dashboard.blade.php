@@ -54,7 +54,7 @@
       </span>
       <div class="info-box-content">
         <span class="info-box-text">المستخدمين</span>
-        <span class="info-box-number">2,000</span>
+        <span class="info-box-number">{{ \App\Models\User::count() }}</span>
       </div>
       <!-- /.info-box-content -->
     </div>
