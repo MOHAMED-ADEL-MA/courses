@@ -27,6 +27,9 @@ class PasswordResetLinkController extends Controller
     {
         $request->validate([
             'email' => ['required', 'email'],
+        ],[
+            'required'=>'هذا الحقل مطلوب',
+            'email'=>'يرجي إدخال بريد الكتروني صالح'
         ]);
 
         // We will send the password reset link to this user. Once we have attempted
