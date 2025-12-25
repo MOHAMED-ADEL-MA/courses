@@ -59,6 +59,11 @@
     <div class="col-md-8 col-lg-6 col-xxl-3">
         <div class="card mb-0">
             <div class="card-body">
+                @session('success')
+                <div class="alert alert-success">
+                    {{ $value }}
+                </div>
+                @endsession
 
                 <p class="text-center">
                 <h3 style="text-align: center">اضافه مستخدم</h3>
