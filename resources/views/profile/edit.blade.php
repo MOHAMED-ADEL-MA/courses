@@ -103,8 +103,8 @@
                         <div class="card-body">
                             <div class="mb-3">
                                 <label for="name" class="form-label">كلمه المرور الحاليه</label>
-                                <input name="current_password" type="password" class="form-control" id="name"
-                                    value="" />
+                                <input name="current_password" type="password" class="form-control" id="name" value=""
+                                    autocomplete="off" />
 
                                 @error('current_password')
                                 <small style="color: red">{{ $message }}</small>
@@ -113,7 +113,8 @@
                             </div>
                             <div class="mb-3">
                                 <label for="password" class="form-label">كلمه المرور الجديده</label>
-                                <input name="password" type="password" class="form-control" id="password" value="" />
+                                <input name="password" type="password" class="form-control" id="password" value=""
+                                    autocomplete="off" />
 
                                 @error('password')
                                 <small style="color: red">{{ $message }}</small>
@@ -123,7 +124,7 @@
                             <div class="mb-3">
                                 <label for="passwordConfirmation" class="form-label">تأكيد كلمه المرور </label>
                                 <input name="password_confirmation" type="password" class="form-control"
-                                    id="passwordConfirmation" value="" />
+                                    id="passwordConfirmation" value="" autocomplete="off" />
 
                                 @error('password_confirmation')
                                 <small style="color: red">{{ $message }}</small>
@@ -167,9 +168,9 @@
                                 <label for="inputPassword3" class="col-sm-2 col-form-label">يرجي ادخال كلمه المرور لحذف
                                     الحساب</label>
                                 <div class="col-sm-10">
-                                    <input type="password" name="password" class="form-control" id="inputPassword3"
-                                        value="" />
-                                    @error('password')
+                                    <input type="password" name="passwordDelete" class="form-control"
+                                        id="inputPassword3" value="" autocomplete="off" />
+                                    @error('passwordDelete')
                                     <small style="color: red">
                                         {{ $message }}
                                     </small>

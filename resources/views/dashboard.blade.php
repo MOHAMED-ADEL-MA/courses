@@ -12,7 +12,7 @@
       </span>
       <div class="info-box-content">
         <span class="info-box-text">المدربين</span>
-        <span class="info-box-number">2,000</span>
+        <span class="info-box-number">{{ \App\Models\Instructor::count() }}</span>
       </div>
       <!-- /.info-box-content -->
     </div>
@@ -26,7 +26,7 @@
       </span>
       <div class="info-box-content">
         <span class="info-box-text">الطلاب</span>
-        <span class="info-box-number">2,000</span>
+        <span class="info-box-number">{{ \App\Models\Student::count() }}</span>
       </div>
       <!-- /.info-box-content -->
     </div>
@@ -36,11 +36,11 @@
   <div class="col-12 col-sm-6 col-md-3">
     <div class="info-box">
       <span class="info-box-icon text-bg-success shadow-sm">
-        <i class="bi bi-people-fill"></i>
+        <i class="bi bi-book-fill"></i>
       </span>
       <div class="info-box-content">
         <span class="info-box-text">الكورسات</span>
-        <span class="info-box-number">2,000</span>
+        <span class="info-box-number">{{ \App\Models\Course::count() }}</span>
       </div>
       <!-- /.info-box-content -->
     </div>
@@ -76,7 +76,7 @@
       </span>
       <div class="info-box-content">
         <span class="info-box-text">عدد الفواتير</span>
-        <span class="info-box-number">2,000</span>
+        <span class="info-box-number">{{ \App\Models\Invoice::count() }}</span>
       </div>
       <!-- /.info-box-content -->
     </div>
@@ -90,7 +90,7 @@
       </span>
       <div class="info-box-content">
         <span class="info-box-text">اجمالي الفواتير</span>
-        <span class="info-box-number">2,000</span>
+        <span class="info-box-number">{{ number_format(\App\Models\Invoice::sum('total_amount')) }} ج.م</span>
       </div>
       <!-- /.info-box-content -->
     </div>
@@ -104,7 +104,8 @@
       </span>
       <div class="info-box-content">
         <span class="info-box-text">الفواتير المدفوعه</span>
-        <span class="info-box-number">2,000</span>
+        <span class="info-box-number">{{ number_format(\App\Models\Invoice::where('status',
+          'مدفوعة')->sum('total_amount')) }} ج.م</span>
       </div>
       <!-- /.info-box-content -->
     </div>
@@ -118,7 +119,8 @@
       </span>
       <div class="info-box-content">
         <span class="info-box-text">الفواتير غير المدفوعه</span>
-        <span class="info-box-number">2,000</span>
+        <span class="info-box-number">
+          {{ number_format(\App\Models\Invoice::where('status', 'غير مدفوعة')->sum('total_amount')) }} ج.م</span>
       </div>
       <!-- /.info-box-content -->
     </div>

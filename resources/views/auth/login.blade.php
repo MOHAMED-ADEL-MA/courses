@@ -76,23 +76,21 @@
                 <p class="text-center">
                 <h3 style="text-align: center">تسجيل الدخول</h3>
                 </p>
-                @if ($errors->any())
-                <div style="color: red">{{ $errors->first() }}</div>
-                @endif
+
                 <form method="POST" action="{{ route('login') }}">
                   @csrf
                   <div class="mb-3">
                     <label for="email" class="form-label">اسم المستخدم </label>
-                    <input type="email" class="form-control" id="email" name="email" :value="{{ old('email') }}"
-                      required autofocus autocomplete="username" />
+                    <input type="email" class="form-control @error('email') is-invalid @enderror" id="email"
+                      name="email" value="{{ old('email') }}" autofocus autocomplete="username" />
                     @error('email')
                     <small style="color: red">{{ $message }}</small>
                     @enderror
                   </div>
                   <div class="mb-4">
                     <label for="password" class="form-label">كلمه المرور</label>
-                    <input type="password" class="form-control" name="password" id="password" required
-                      autocomplete="current-password">
+                    <input type="password" class="form-control @error('password') is-invalid @enderror" name="password"
+                      id="password" autocomplete="current-password">
                     @error('password')
                     <small style="color: red">{{ $message }}</small>
                     @enderror
