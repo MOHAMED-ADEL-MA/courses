@@ -13,7 +13,7 @@ class StudentController extends Controller
      */
     public function index()
     {
-        
+
         $students=Student::latest()->get();
         return view('students.index',compact('students'));
     }
@@ -31,7 +31,7 @@ class StudentController extends Controller
      */
     public function store(Request $request)
     {
-        
+
     $validated = $request->validate([
         'name' => 'required|string',
         'email' => 'nullable|email|unique:students,email',
@@ -68,9 +68,9 @@ class StudentController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Student $student)
     {
-        //
+        return view('students.edit', compact('student'));
     }
 
     /**
@@ -78,7 +78,7 @@ class StudentController extends Controller
      */
     public function update(Request $request, Student $student)
     {
-    
+
         $validated = $request->validate([
             'name' => 'required|string|max:255',
             'email' => 'nullable|email|unique:students,email,' . $student->id,
@@ -105,15 +105,27 @@ class StudentController extends Controller
 
         $student->update($validated);
 
-        return redirect()->route('students.index')->with('success', 'تم تحديث بيانات الطالب بنجاح'); 
-        
+        return redirect()->route('students.index')->with('success', 'تم تحديث بيانات الطالب بنجاح');
+
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Student $student)
     {
-        //
+        if ($student->invoices()->where('status', 'غير مدفوعة')->exists()) {
+            return back()->with('error','هذا الطالب لديه فواتير مستحقه');
+        }
+
+        if ($student->photo) {
+
+            $photoPath = str_replace('public/', '', $student->photo);
+            Storage::disk('public')->delete($photoPath);
+        }
+
+        $student->delete();
+        return back()->with('success','تم حذف الطالب بنجاح');
+
     }
 }

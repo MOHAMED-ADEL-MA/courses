@@ -5,11 +5,10 @@
 @section('content')
 <div class="container mt-5">
     <div class="card">
-        <div class="card-header bg-success text-white d-flex justify-content-between align-items-center">
+        <div class="card-header bg-secondary text-white d-flex justify-content-between align-items-center">
             <h5 class="mb-0">سجل الفواتير</h5>
-            <a href="{{ route('invoices.create') }}" class="btn btn-sm btn-light">
-                <i class="bi bi-plus-circle"></i> إضافة فاتورة
-            </a>
+
+
         </div>
         <div class="card-body">
 
@@ -18,7 +17,7 @@
             @endsession
 
             <div class="table-responsive">
-                <table class="table table-bordered table-hover align-middle">
+                <table class="table table-bordered table-hover">
                     <thead class="table-light">
                         <tr>
                             <th class="text-center">م</th>
@@ -64,11 +63,11 @@
                             </td>
 
                             <!-- التاريخ -->
-                            <td>{{ $invoice->issue_date->format('d-m-Y') }}</td>
+                            <td>{{ $invoice->created_at->format('d-m-Y') }}</td>
 
-                            <!-- الإجراءات -->
-                            <td class="text-center">
-                                <!-- زر تغيير الحالة (التعديل) -->
+
+                            <td class="d-flex justify-content-between align-items-center">
+                                <!-- زر التعديل -->
                                 <a href="{{ route('invoices.edit', $invoice) }}" class="btn btn-sm btn-warning">
                                     <i class="bi bi-pencil-square"></i>
                                 </a>

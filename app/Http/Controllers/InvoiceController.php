@@ -10,7 +10,7 @@ use Illuminate\Http\Request;
 class InvoiceController extends Controller
 {
     public function index(){
-        $invoices=Invoice::with('students','courses')->latest()->get();
+        $invoices=Invoice::with('student','course')->latest()->get();
         return view('invoices.index',compact('invoices'));
     }
 
