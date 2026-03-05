@@ -11,7 +11,7 @@
             </li>
             <li class="nav-item d-none d-md-block">
 
-                <h3>مرحبا {{ Auth::user()->name }}</h3>
+                <h4>مرحبا {{ Auth::user()->name }}</h4>
             </li>
             {{-- <li class="nav-item d-none d-md-block"><a href="#" class="nav-link">Contact</a></li> --}}
         </ul>

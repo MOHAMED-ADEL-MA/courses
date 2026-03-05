@@ -69,18 +69,19 @@
                             <td class="d-flex justify-content-between align-items-center">
                                 <!-- زر التعديل -->
                                 <a href="{{ route('invoices.edit', $invoice) }}" class="btn btn-sm btn-warning">
-                                    <i class="bi bi-pencil-square"></i>
+                                    <i class="bi bi-pencil-square"></i> تعديل
                                 </a>
 
                                 <!-- زر الحذف -->
-                                <form action="{{ route('invoices.destroy', $invoice) }}" method="POST" class="d-inline"
-                                    onsubmit="return confirm('هل أنت متأكد من حذف الفاتورة؟')">
+                                <form id="delete-form-{{ $invoice->id }}" action="{{ route('invoices.destroy', $invoice) }}" method="POST" class="d-inline"
+                                    >
                                     @csrf
                                     @method('DELETE')
-                                    <button type="submit" class="btn btn-sm btn-danger">
-                                        <i class="bi bi-trash"></i>
+                                    </form>
+                                    <button onclick="confirmDelete({{ $invoice->id }})"class="btn btn-sm btn-danger">
+                                        <i class="bi bi-trash"></i> حذف
                                     </button>
-                                </form>
+
                             </td>
                         </tr>
                         @empty

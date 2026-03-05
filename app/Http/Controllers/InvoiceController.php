@@ -42,7 +42,13 @@ class InvoiceController extends Controller
 
     }
 
-    public function destroy(){
+    public function destroy(Invoice $invoice){
+
+        if($invoice->status === 'غير مدفوعة')
+            return back()->with('error','عفوا , لم يتم سداد هذه الفاتورة');
+
+        $invoice->delete();
+        return back()->with('success','تم حذف الفاتوره بنجاح');
 
     }
 }

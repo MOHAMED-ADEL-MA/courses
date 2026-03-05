@@ -36,7 +36,7 @@ class StudentController extends Controller
         'name' => 'required|string',
         'email' => 'nullable|email|unique:students,email',
         'phone' => 'required|unique:students,phone|string|max:20',
-        'birth_date' => 'nullable|date',
+        'birth_date' => 'required|date',
         'photo' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
     ],[
         'required'=>'هذا الحقل مطلوب',
@@ -83,7 +83,7 @@ class StudentController extends Controller
             'name' => 'required|string|max:255',
             'email' => 'nullable|email|unique:students,email,' . $student->id,
             'phone' => 'required|string|max:20',
-            'birth_date' => 'nullable|date',
+            'birth_date' => 'required|date',
             'photo' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
         ],[
             'required'=>'هذا الحقل مطلوب',
