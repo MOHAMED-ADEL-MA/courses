@@ -11,7 +11,7 @@ class Invoice extends Model
         'course_id',
         'total_amount',
         'status',
-        
+
     ];
 
     public function course(){
@@ -20,5 +20,14 @@ class Invoice extends Model
 
     public function student(){
         return $this->belongsTo(Student::class);
+    }
+
+    public function payments(){
+        return $this->hasMany(Payment::class);
+    }
+
+    public function getRemainingAmountAttribute(){
+        $paidAmount = $this->payments->sum('amount');
+        return $this->total_amount - $paidAmount;
     }
 }

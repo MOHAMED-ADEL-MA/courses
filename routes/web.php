@@ -29,7 +29,7 @@ Route::middleware('auth')->group(function () {
 });
 
 Route::middleware(['auth','admin'])->group(function () {
-    
+
     // User Routes
     Route::get('/edit-user/{id}',[UserController::class, 'edit'])->name('edit.user');
     Route::patch('/edit-user/{user}',[UserController::class, 'update'])->name('update.user');
@@ -47,5 +47,7 @@ Route::resource('students',StudentController::class);
 
 // Invoices Routes
 Route::resource('invoices',InvoiceController::class);
+Route::post('invoices/{invoice}/pay',[InvoiceController::class,'addPayment'])->name('invoices.pay');
+Route::get('invoices/{invoice}/download',[InvoiceController::class,'downloadPdf'])->name('invoices.download');
 
 require __DIR__.'/auth.php';

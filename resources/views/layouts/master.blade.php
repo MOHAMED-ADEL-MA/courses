@@ -57,7 +57,7 @@
     <!--end::Sidebar-->
     <!--begin::App Main-->
     {{-- page Body --}}
-    <main class="app-main">
+    <main class="app-main m-3">
       <!--begin::App Content Header-->
       <div class="app-content-header">
         <!--begin::Container-->

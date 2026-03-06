@@ -57,25 +57,27 @@
                                 @enderror
                             </div>
                         </div>
+                        <div class="row">
+                            <!-- السعر -->
+                            <div class="col-md-6 mb-3">
+                                <label for="total_amount" class="form-label">المبلغ الكلي</label>
+                                <input type="number" step="0.01"
+                                    class="form-control @error('total_amount') is-invalid @enderror" id="total_amount"
+                                    name="total_amount">
+                                @error('total_amount')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                                @enderror
+                            </div>
 
-                        <!-- السعر -->
-                        <div class="mb-3">
-                            <label for="total_amount" class="form-label">المبلغ الكلي</label>
-                            <input type="number" step="0.01"
-                                class="form-control @error('total_amount') is-invalid @enderror" id="total_amount"
-                                name="total_amount">
-                            @error('total_amount')
-                            <div class="invalid-feedback">{{ $message }}</div>
-                            @enderror
-                        </div>
-
-                        <!-- الحالة -->
-                        <div class="mb-3">
-                            <label for="status" class="form-label">حالة السداد</label>
-                            <select class="form-select" id="status" name="status">
-                                <option value="غير مدفوعة">غير مدفوعة</option>
-                                <option value="مدفوعة">مدفوعة </option>
-                            </select>
+                            <!-- الحالة -->
+                            <div class="col-md-6 mb-3">
+                                <label for="status" class="form-label">حالة السداد</label>
+                                <input type="text" class="form-control" id="status" value="غير مدفوعة" disabled>
+                                {{-- <select class="form-select" id="status" name="status">
+                                    <option value="غير مدفوعة">غير مدفوعة</option>
+                                    <option value="مدفوعة">مدفوعة </option>
+                                </select> --}}
+                            </div>
                         </div>
 
 
@@ -98,7 +100,7 @@
         var select = document.getElementById('course_id');
         var priceInput = document.getElementById('total_amount');
         var selectedOption = select.options[select.selectedIndex];
-        
+
         if (selectedOption) {
             priceInput.value = selectedOption.getAttribute('data-price');
         }
