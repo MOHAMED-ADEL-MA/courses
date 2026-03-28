@@ -23,7 +23,7 @@ class CourseSession extends Model
         return $this->belongsTo(Course::class);
     }
 
-    public function attendance(){
-        return $this->hasMany(Attendance::class);
+    public function attendances(){
+        return $this->hasMany(Attendance::class,'courceSession_id');
     }
 }

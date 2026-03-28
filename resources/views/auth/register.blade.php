@@ -52,70 +52,76 @@
 </x-guest-layout> --}}
 
 @extends('layouts.master')
-@section('title','اضافه مستخدم')
+@section('title', 'اضافه مستخدم')
 
 @section('content')
-<div class="row justify-content-center w-100">
-    <div class="col-md-8 col-lg-6 col-xxl-3">
-        <div class="card mb-0">
-            <div class="card-body">
-                @session('success')
-                <div class="alert alert-success">
-                    {{ $value }}
+    <div class="row justify-content-center w-100">
+        <div class="col-md-8 col-lg-6 col-xxl-3">
+            <div class="card mb-0">
+                <div class="card-body">
+                    @session('success')
+                        <div class="alert alert-success alert-dismissible fade show" role="alert">
+                            {{ $value }}
+                            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                        </div>
+                    @endsession
+
+                    <p class="text-center">
+                    <h3 style="text-align: center">اضافه مستخدم</h3>
+                    </p>
+
+                    <form method="POST" action="{{ route('register') }}">
+                        @csrf
+                        <div class="mb-3">
+                            <label for="name" class="form-label">اسم المستخدم </label>
+                            <input type="text"
+                                class="form-control
+                                @error('name') is-invalid @enderror"
+                                id="name" name="name" value="{{ old('name') }}" />
+                            @error('name')
+                                <small style="color: red">{{ $message }}</small>
+                            @enderror
+                        </div>
+                        <div class="mb-3">
+                            <label for="email" class="form-label">البريد الالكتروني</label>
+                            <input type="email" class="form-control @error('email') is-invalid @enderror " id="email"
+                                name="email" value="{{ old('email') }}" />
+                            @error('email')
+                                <small style="color: red">{{ $message }}</small>
+                            @enderror
+                        </div>
+                        <div class="mb-4">
+                            <label for="password" class="form-label">كلمة المرور</label>
+                            <input type="password" class="form-control @error('password') is-invalid @enderror"
+                                name="password" id="password" value="{{ old('password') }}">
+                            @error('password')
+                                <small style="color: red">{{ $message }}</small>
+                            @enderror
+                        </div>
+                        <div class="mb-4">
+                            <label for="password" class="form-label">تأكيد كلمة المرور</label>
+                            <input type="password" class="form-control @error('password_confirmation') is-invalid @enderror"
+                                name="password_confirmation" id="password" autocomplete="current-password">
+                            @error('password_confirmation')
+                                <small style="color: red">{{ $message }}</small>
+                            @enderror
+                        </div>
+
+                        <div class="form-group ">
+                            <label for="inputRole">اختيار دور :</label>
+                            <select id="inputRole" class="form-control mb-4" name="role">
+                                <option selected>موظف</option>
+                                <option>مدير</option>
+                            </select>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary w-100 py-8 fs-4 mb-4 rounded-2">
+                            اضافه
+                        </button>
+                    </form>
+
                 </div>
-                @endsession
-
-                <p class="text-center">
-                <h3 style="text-align: center">اضافه مستخدم</h3>
-                </p>
-
-                <form method="POST" action="{{ route('register') }}">
-                    @csrf
-                    <div class="mb-3">
-                        <label for="name" class="form-label">اسم المستخدم </label>
-                        <input type="text" class="form-control" id="name" name="name" />
-                        @error('name')
-                        <small style="color: red">{{ $message }}</small>
-                        @enderror
-                    </div>
-                    <div class="mb-3">
-                        <label for="email" class="form-label">البريد الالكتروني</label>
-                        <input type="email" class="form-control" id="email" name="email" />
-                        @error('email')
-                        <small style="color: red">{{ $message }}</small>
-                        @enderror
-                    </div>
-                    <div class="mb-4">
-                        <label for="password" class="form-label">كلمة المرور</label>
-                        <input type="password" class="form-control" name="password" id="password">
-                        @error('password')
-                        <small style="color: red">{{ $message }}</small>
-                        @enderror
-                    </div>
-                    <div class="mb-4">
-                        <label for="password" class="form-label">تأكيد كلمة المرور</label>
-                        <input type="password" class="form-control" name="password_confirmation" id="password"
-                            autocomplete="current-password">
-                        @error('password_confirmation')
-                        <small style="color: red">{{ $message }}</small>
-                        @enderror
-                    </div>
-
-                    <div class="form-group ">
-                        <label for="inputRole">اختيار دور :</label>
-                        <select id="inputRole" class="form-control mb-4" name="role">
-                            <option selected>موظف</option>
-                            <option>مدير</option>
-                        </select>
-                    </div>
-
-                    <button type="submit" class="btn btn-primary w-100 py-8 fs-4 mb-4 rounded-2">
-                        اضافه
-                    </button>
-                </form>
-
             </div>
         </div>
     </div>
-</div>
 @endsection

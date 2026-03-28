@@ -19,13 +19,13 @@ class UserSeeder extends Seeder
             'name'=>'mohamed',
             'role'=>'مدير',
             'email'=>'admin@mail.com',
-            'password'=>Hash::make('123456789')
+            'password'=>Hash::make('123456')
         ],
             [
-            'name'=>'user1',
+            'name'=>'user',
             'role'=>'موظف',
-            'email'=>'user1@mail.com',
-            'password'=>Hash::make('123456789')
+            'email'=>'user@mail.com',
+            'password'=>Hash::make('123456')
         ]
         ]);
     }

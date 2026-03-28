@@ -5,16 +5,8 @@
     <meta charset="utf-8">
     <title>فاتورة</title>
     <style>
-        @font-face {
-            font-family: 'Cairo';
-            font-style: normal;
-            font-weight: normal;
-            /* استبدل public_path بـ asset */
-            src: url('{{ public_path('fonts/Noto.ttf') }}');
-        }
-
         body {
-            font-family: 'Cairo', sans-serif;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             padding: 40px;
         }
 
@@ -51,7 +43,7 @@
     <div class="header">
         <h1>فاتورة تسجيل كورس</h1>
         <p>رقم الفاتورة: {{ $invoice->id }}</p>
-        <p>تاريخ الإصدار: {{ $invoice->issue_date }}</p>
+        <p>تاريخ الإصدار: {{ $invoice->created_at->format('d/m/Y') }}</p>
     </div>
 
     <p>
@@ -85,6 +77,18 @@
     <p><strong>الحالة:</strong>
         {{ $invoice->status == 'مدفوعة' ? 'مدفوع بالكامل' : ($invoice->status == 'مدفوعة جزئيا' ? 'مدفوع جزئياً' : 'غير مدفوع') }}
     </p>
+
+    @if (isset($isPreview) && $isPreview)
+        <div style="text-align: center; margin-top: 50px; padding-top: 20px; border-top: 2px solid #eee;">
+            <a href="{{ route('invoices.download', $invoice) }}" class="btn btn-primary btn-lg"
+                style="text-decoration: none; color: dark; padding: 10px 20px;">
+                تحميل نسخة PDF
+            </a>
+            <button onclick="window.print()" class="btn btn-secondary btn-lg" style="padding: 10px 20px;">
+                <i class="bi bi-printer"></i> طباعة
+            </button>
+        </div>
+    @endif
 </body>
 
 </html>

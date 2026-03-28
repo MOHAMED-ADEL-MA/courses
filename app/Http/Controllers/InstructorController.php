@@ -52,7 +52,7 @@ class InstructorController extends Controller
 
         // 3. العودة مع رسالة نجاح
         return back()->with('success', 'تم إضافة المدرب بنجاح');
-        
+
     }
 
     /**
@@ -60,7 +60,7 @@ class InstructorController extends Controller
      */
     public function show(Instructor $instructor)
     {
-        
+
     }
 
     /**
@@ -108,6 +108,8 @@ class InstructorController extends Controller
      */
     public function destroy(Instructor $instructor)
     {
+        if($instructor->has('courses'))
+            return back()->with('error','عفوا هذ المدرب مرتبط بكورسات ');
         $instructor->delete();
         return back()->with('success','تم حذف بيانات المدرب بنجاح');
     }

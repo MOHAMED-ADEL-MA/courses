@@ -1,5 +1,8 @@
 {
     "cairo": {
         "normal": "cairo_normal_3e16e24c2e1f29aa938aec65a2b4585e"
+    },
+    "nano": {
+        "normal": "nano_normal_3e16e24c2e1f29aa938aec65a2b4585e"
     }
 }

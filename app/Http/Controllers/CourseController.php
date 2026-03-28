@@ -32,7 +32,7 @@ class CourseController extends Controller
     public function store(Request $request)
     {
         $validate=$request->validate([
-            'name'=>'required',
+            'name'=>'required | unique:courses,name',
             'instructor_id'=>'required | exists:instructors,id',
             'description'=>'nullable',
             'hours'=>'required | integer | min:1',
@@ -41,6 +41,7 @@ class CourseController extends Controller
             'end_date'=>'required | date | after_or_equal:start_date',
         ],[
             'required'=>'هذا الحقل مطلوب ',
+            'unique'=> 'هذا الكورس موجود بالفعل',
             'instructor_id.exists'=>'المدرب غير موجود',
             'hours.min'=>'القيمه اقل من 1 ساعه',
             'hours.integer'=>'يجب ادخال عدد صحيح',
@@ -107,7 +108,7 @@ class CourseController extends Controller
      */
     public function destroy(Course $course)
     {
-        
+
         //  التحقق من وجود طلاب مسجلين
         if ($course->students()->count() > 0) {
             return back()->with('error', 'لا يمكن حذف هذا الكورس لأنه به طلاب مسجلين حالياً.');
@@ -118,7 +119,7 @@ class CourseController extends Controller
             return back()->with('error', 'لا يمكن حذف هذا الكورس لأنه مرتبط بفواتير.');
         }
 
-        //  التحقق من وجود جلسات   
+        //  التحقق من وجود جلسات
         if ($course->courseSessions()->count() > 0) {
             return back()->with('error', 'لا يمكن حذف الكورس لأنه يحتوي على جلسات دراسية.');
         }
@@ -127,5 +128,5 @@ class CourseController extends Controller
 
         return back()->with('success', 'تم حذف الكورس بنجاح.');
     }
-    
+
 }

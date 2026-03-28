@@ -7,7 +7,9 @@ use App\Models\Invoice;
 use App\Models\Payment;
 use App\Models\Student;
 use Barryvdh\DomPDF\Facade\Pdf;
+use Barryvdh\Snappy\Facades\SnappyPdf;
 use Illuminate\Http\Request;
+
 
 class InvoiceController extends Controller
 {
@@ -32,8 +34,8 @@ class InvoiceController extends Controller
     }
 
     $invoices = $query->latest()->get();
-    $students = Student::all(); // للقائمة المنسدلة في الفلتر
-    $courses = Course::all();  // للقائمة المنسدلة في الفلتر
+    $students = Student::all();
+    $courses = Course::all();
 
     return view('invoices.index', compact('invoices', 'students', 'courses'));
 }
@@ -55,6 +57,16 @@ class InvoiceController extends Controller
             'numeric'=>'يجب اداخال قيمه رقمية',
         ]);
 
+        //  جلب الكورس والطالب
+        $course = Course::find($validated['course_id']);
+        $student = Student::find($validated['student_id']);
+
+        //  التحقق: هل الطالب مسجل بالفعل في هذا الكورس؟
+        if ($course->students()->where('student_id', $student->id)->exists()) {
+
+            return back()->with('error', 'عذراً، هذا الطالب مسجل بالفعل في هذا الكورس.');
+        }
+
         $validated['status']='غير مدفوعة';
         Invoice::create($validated);
 
@@ -68,15 +80,17 @@ class InvoiceController extends Controller
 
     public function destroy(Invoice $invoice){
 
-        if($invoice->status === 'غير مدفوعة')
-            return back()->with('error','عفوا , لم يتم سداد هذه الفاتورة');
+        if($invoice->status === 'غير مدفوعة'){
+            $invoice->delete();
+            return back()->with('success','تم حذف الفاتوره بنجاح');
+        }
 
-        $invoice->delete();
-        return back()->with('success','تم حذف الفاتوره بنجاح');
+
+        return back()->with('error','عفوا لا يمكن حذف فاتوره تم الدفع عليها');
 
     }
 
-    public function addPayment(Request $request, Invoice $invoice){
+    public function addPayment(Request $request, Invoice $invoice){ //اضافة الدفعات
         $validated=$request->validate([
             'amount'=>'required| numeric| min:0.01'
         ],[
@@ -107,9 +121,14 @@ class InvoiceController extends Controller
         return back()->with('success','تم تسجيل الدفعة بنجاح');
 
     }
-    public function downloadPdf(Invoice $invoice)
-{
-    $pdf = Pdf::loadView('invoices.pdf', compact('invoice'));
-    return $pdf->download('invoice_' . $invoice->id . '.pdf');
-}
+    public function downloadPdf(Invoice $invoice) //تحميل الفاتوره PDF
+    {
+        $pdf = SnappyPdf::loadView('invoices.pdf', compact('invoice'));
+        return $pdf->download('invoice_' . $invoice->id . '.pdf');
+    }
+
+    public function previewInvoice(Invoice $invoice)
+    {
+        return view('invoices.pdf', compact('invoice'))->with('isPreview', true);
+    }
 }

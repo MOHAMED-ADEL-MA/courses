@@ -32,12 +32,13 @@ class RegisteredUserController extends Controller
         $request->validate([
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:'.User::class],
-            'password' => ['required', 'confirmed']
+            'password' => ['required', 'confirmed','min:6']
         ],[
-            'required'=>'هذاالحقل مطلوب',
+            'required'=>'هذا الحقل مطلوب',
             'email'=>'يجب ادخال بريد الكتروني صالح',
             'unique'=>'هذا البريد مستخدم من قبل',
-            'confirmed'=>'القيم غير متطابقه'
+            'confirmed'=>'القيم غير متطابقه',
+            'min'=>'يجب ان لا تقل كلمة المرور عن 6 احرف',
         ]);
 
         $user = User::create([

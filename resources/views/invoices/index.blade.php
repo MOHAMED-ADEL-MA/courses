@@ -131,25 +131,36 @@
 
                                     <td class="text-center">
                                         <div class="d-flex justify-content-center gap-2">
-                                            <a href="{{ route('invoices.download', $invoice) }}"
-                                                class="btn btn-info btn-sm text-white" title="تحميل PDF">
-                                                <i class="bi bi-file-earmark-pdf"></i> تحميل
+                                            <a href="{{ route('invoices.preview', $invoice) }}" target="_blank"
+                                                class="btn btn-secondary btn-sm" title="معاينة الفاتورة">
+                                                <i class="bi bi-eye"></i> عرض
+                                            </a>
                                             </a>
 
-                                            @if ($invoice->status != 'paid')
+                                            @if ($invoice->status == 'مدفوعة')
+                                                <button class="btn btn-success btn-sm" disabled>
+                                                    <i class="bi bi-cash-coin"></i> دفع
+                                                </button>
+                                            @else
                                                 <button class="btn btn-success btn-sm" data-bs-toggle="modal"
                                                     data-bs-target="#payModal{{ $invoice->id }}" title="إضافة دفعة">
                                                     <i class="bi bi-cash-coin"></i> دفع
                                                 </button>
                                             @endif
 
-                                            <form action="{{ route('invoices.destroy', $invoice) }}" method="POST"
-                                                onsubmit="return confirm('هل أنت متأكد من حذف هذه الفاتورة؟')">
+                                            <!-- زر الحذف -->
+                                            <form id="delete-form-{{ $invoice->id }}"
+                                                action="{{ route('invoices.destroy', $invoice) }}" method="POST"
+                                                style="display: none;">
                                                 @csrf
                                                 @method('DELETE')
-                                                <button type="submit" class="btn btn-danger btn-sm" title="حذف">
-                                                    <i class="bi bi-trash"></i> حذف
-                                                </button>
+                                            </form>
+
+
+                                            <button onclick="confirmDelete({{ $invoice->id }})"
+                                                class="btn btn-danger btn-sm">
+                                                <i class="bi bi-trash"></i> حذف
+                                            </button>
                                             </form>
                                         </div>
                                     </td>

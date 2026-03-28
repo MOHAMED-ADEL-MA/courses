@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Course;
 use App\Models\Student;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
@@ -11,11 +12,32 @@ class StudentController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
 
-        $students=Student::latest()->get();
-        return view('students.index',compact('students'));
+        $query = Student::with('courses');
+
+        // 1. فلترة حسب الكورس
+        if ($request->filled('course_id') && $request->course_id != '') {
+            $query->whereHas('courses', function ($q) use ($request) {
+                $q->where('course_id', $request->course_id);
+            });
+        }
+
+        // 2. فلترة حسب تاريخ التسجيل
+        if ($request->filled('registration_date')) {
+            $query->whereHas('courses', function ($q) use ($request) {
+                $q->whereDate('student_course.created_at','=', $request->registration_date);
+
+            });
+        }
+
+        $students = $query->latest()->get();
+
+
+        $courses = Course::all();
+
+        return view('students.index', compact('students', 'courses'));
     }
 
     /**
@@ -37,7 +59,7 @@ class StudentController extends Controller
         'email' => 'nullable|email|unique:students,email',
         'phone' => 'required|unique:students,phone|string|max:20',
         'birth_date' => 'required|date',
-        'photo' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+        'photo' => 'nullable|image|mimes:jpeg,png,jpg,gif',
     ],[
         'required'=>'هذا الحقل مطلوب',
         'email'=>'يجب ادخال بريد الكتروني صحيح',

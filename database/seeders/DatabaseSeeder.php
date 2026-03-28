@@ -22,6 +22,8 @@ class DatabaseSeeder extends Seeder
             UserSeeder::class,
             InstructorSeeder::class,
             StudentSeeder::class,
+            CourseSeeder::class,
+            InvoiceSeeder::class,
         ]);
     }
 }
