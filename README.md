@@ -1,59 +1,163 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# 📚 Courses Management System
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+A full-featured **Courses Management System** built باستخدام **Laravel 12**, **Bootstrap**, and **MySQL**.
+This system is designed to efficiently manage instructors, students, courses, invoices, attendance, and reports.
 
-## About Laravel
+---
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+## 🚀 Features
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+### 👥 User & Role Management
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+* Manage system users (Admins / Staff)
+* Role-based access control (RBAC)
+* Permissions management for each role
 
-## Learning Laravel
+### 🧑‍🏫 Instructor Management
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework. You can also check out [Laravel Learn](https://laravel.com/learn), where you will be guided through building a modern Laravel application.
+* Add, edit, and delete instructors
+* Assign instructors to courses
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+### 🎓 Student Management
 
-## Laravel Sponsors
+* Register and manage students
+* Track student data
+* Enroll students in courses
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+### 📚 Course Management
 
-### Premium Partners
+* Create and manage courses
+* Assign instructors to courses
+* Manage student enrollments
 
-- **[Vehikl](https://vehikl.com)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Redberry](https://redberry.international/laravel-development)**
-- **[Active Logic](https://activelogic.com)**
+### 💰 Invoice System
 
-## Contributing
+* Generate invoices for students
+* Payment status tracking:
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+  * ✅ Fully Paid
+  * ⚠️ Partially Paid
+  * ❌ Unpaid
 
-## Code of Conduct
+### 📅 Attendance System
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+* Track student attendance and absence
+* Attendance reports
 
-## Security Vulnerabilities
+### 📊 Reports
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+* Generate detailed system reports
+* Export reports as:
 
-## License
+  * PDF
+  * Excel
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+---
+
+## 🛠️ Tech Stack
+
+* **Backend:** Laravel 12
+* **Frontend:** Bootstrap
+* **Database:** MySQL
+* **Packages:**
+
+  * laravel maatwebsite excel
+  * SnappyPDF
+
+---
+
+## ⚙️ Installation
+
+### 1. Clone the repository
+
+```bash
+git clone https://github.com/your-username/courses-management-system.git
+```
+
+### 2. Navigate to the project directory
+
+```bash
+cd courses-management-system
+```
+
+### 3. Install dependencies
+
+```bash
+composer install
+npm install
+```
+
+### 4. Copy environment file
+
+```bash
+cp .env.example .env
+```
+
+### 5. Generate application key
+
+```bash
+php artisan key:generate
+```
+
+### 6. Configure database
+
+Update your database credentials inside the `.env` file.
+
+### 7. Run migrations
+
+```bash
+php artisan migrate
+```
+
+### 8. Seed database (optional)
+
+```bash
+php artisan db:seed
+```
+
+### 9. Run the development server
+
+```bash
+php artisan serve
+```
+
+---
+
+## 🔐 Default Admin
+
+Run database seeders and use Admin account email: admin@mail.com , and Password: 123456 .
+
+---
+
+## 📂 Project Structure
+
+* `app/Models` → Application models
+* `app/Http/Controllers` → Controllers
+* `resources/views` → Blade templates
+* `routes/web.php` → Web routes
+
+---
+
+
+## 🤝 Contributing
+
+Contributions are welcome!
+Feel free to fork this repository and submit a pull request.
+
+---
+
+## 📄 License
+
+This project is open-source and available under the **MIT License**.
+
+---
+
+## 👨‍💻 Author
+
+Developed by **Mohamed Adel**
+
+---
+
+## ⭐ Support
+
+If you find this project helpful, please give it a ⭐ on GitHub!
