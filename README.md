@@ -1,6 +1,6 @@
 # 📚 Courses Management System
 
-A full-featured **Courses Management System** built باستخدام **Laravel 12**, **Bootstrap**, and **MySQL**.
+A full-featured **Courses Management System** built using **Laravel 12**, **Bootstrap**, and **MySQL**.
 This system is designed to efficiently manage instructors, students, courses, invoices, attendance, and reports.
 
 ---
