@@ -71,13 +71,13 @@ This system is designed to efficiently manage instructors, students, courses, in
 ### 1. Clone the repository
 
 ```bash
-git clone https://github.com/your-username/courses-management-system.git
+git clone https://github.com/MOHAMED-ADEL-MA/courses.git
 ```
 
 ### 2. Navigate to the project directory
 
 ```bash
-cd courses-management-system
+cd courses
 ```
 
 ### 3. Install dependencies
