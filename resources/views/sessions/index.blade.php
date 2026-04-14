@@ -6,7 +6,7 @@
         <div class="card shadow-sm">
             <div class="card-header bg-info text-white d-flex justify-content-between align-items-center">
                 <h5 class="mb-0">جدول الجلسات</h5>
-                <button class="btn btn-sm btn-light" data-bs-toggle="modal" data-bs-target="#addSessionModal">
+                <button class="btn btn-sm btn-light ms-auto" data-bs-toggle="modal" data-bs-target="#addSessionModal">
                     إضافة جلسة
                 </button>
             </div>

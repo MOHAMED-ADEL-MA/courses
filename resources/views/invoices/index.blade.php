@@ -17,10 +17,12 @@
                         <label class="form-label">حالة السداد</label>
                         <select name="status" class="form-select">
                             <option value="">الكل</option>
-                            <option value="unpaid" {{ request('status') == 'unpaid' ? 'selected' : '' }}>غير مدفوع</option>
-                            <option value="partial" {{ request('status') == 'partial' ? 'selected' : '' }}>مدفوع جزئياً
+                            <option value="غير مدفوعة" {{ request('status') == 'غير مدفوعة' ? 'selected' : '' }}>غير مدفوعة
                             </option>
-                            <option value="paid" {{ request('status') == 'paid' ? 'selected' : '' }}>مدفوع بالكامل
+                            <option value="مدفوعة جزئيا" {{ request('status') == 'مدفوعة جزئيا' ? 'selected' : '' }}>مدفوعة
+                                جزئياً
+                            </option>
+                            <option value="مدفوعة" {{ request('status') == 'مدفوعة' ? 'selected' : '' }}>مدفوعة بالكامل
                             </option>
                         </select>
                     </div>
