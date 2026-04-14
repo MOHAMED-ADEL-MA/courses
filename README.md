@@ -63,6 +63,7 @@ This system is designed to efficiently manage instructors, students, courses, in
 
   * laravel maatwebsite excel
   * SnappyPDF
+  * Sweet Alert2
 
 ---
 
